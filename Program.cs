@@ -18,6 +18,7 @@ namespace FileSystemTree
         static void OutputFileSystemTreeLevel(int indentationLevel, FileSystemTreeItem item)
         {
             // set indentation based on level in tree 2 spaces per level
+            //
             string indentation = new string(Enumerable.Repeat(' ', indentationLevel * 2).ToArray());
 
             //combine the indentation with the current tree items name and type
