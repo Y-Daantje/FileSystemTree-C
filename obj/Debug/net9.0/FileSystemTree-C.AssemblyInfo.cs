@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("FileSystemTree-C")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d30827fb7dbcf84d4f9c19cbc0e64dcd6ad24229")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1240974efdaacbb8cebf5c90b6f8e8df063a0bfa")]
 [assembly: System.Reflection.AssemblyProductAttribute("FileSystemTree-C")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FileSystemTree-C")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
