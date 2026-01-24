@@ -10,14 +10,22 @@ namespace FileSystemTree
         private readonly IEnumerable<FileSystemTreeItem> children;
         private readonly FileSystemTreeItemType type;
         private readonly string name;
-        private readonly int size;
+        private readonly long length;
 
-        public FileSystemTreeItem(string name, FileSystemTreeItemType type, IEnumerable<FileSystemTreeItem> children, int size)
+        private readonly string creationTime;
+
+        public FileSystemTreeItem(string name, FileSystemTreeItemType type, IEnumerable<FileSystemTreeItem> children, long length)
         {
             this.children = children;
             this.name = name;
             this.type = type;
-            this.size = size;
+            this.length = length;
+            this.creationTime = DateTime.Now.ToString();
+        }
+
+        public FileSystemTreeItem(string name, FileSystemTreeItemType type, long length)
+            : this(name, type, Array.Empty<FileSystemTreeItem>(), length)
+        {
         }
 
         // public properties to access the private fields
@@ -27,7 +35,10 @@ namespace FileSystemTree
         public IEnumerable<FileSystemTreeItem> Children { get { return this.children; } }
         public FileSystemTreeItemType Type { get { return this.type; } }
         public string Name { get { return this.name; } }
-        public int? Size { get { return this.size; } }
+        public long Length { get { return this.length; } }
+        public string CreationTime { get { return this.creationTime; } }
+
+    
 
 
 

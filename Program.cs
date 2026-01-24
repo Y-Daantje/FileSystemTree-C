@@ -31,7 +31,7 @@ namespace FileSystemTree
             }
 
             //combine the indentation with the current tree items name and type
-            Console.WriteLine(indentation + item.Name + item.Size + " (" + item.Type + ")");
+            Console.WriteLine($"{indentation}{item.Name} ({item.Type}) ({item.Length} bytes)  ({item.CreationTime})");
 
         }
         static FileSystemTreeItem GetFileSystemTree(DirectoryInfo baseDirectory)
@@ -60,7 +60,7 @@ namespace FileSystemTree
                 //Skip directories that cause IO issues
                 return new FileSystemTreeItem(baseDirectory.Name, FileSystemTreeItemType.Directory, ImmutableArray<FileSystemTreeItem>.Empty, 0);
             }
-          
+
 
             List<FileSystemTreeItem> children = new List<FileSystemTreeItem>();
 
@@ -74,7 +74,7 @@ namespace FileSystemTree
             //Lastly add all files of the current tree item
             foreach (FileInfo file in files)
             {
-                children.Add(new FileSystemTreeItem(file.Name, FileSystemTreeItemType.File, null, (int)file.Length));
+                children.Add(new FileSystemTreeItem(file.Name, FileSystemTreeItemType.File, (long)file.Length));
             }
 
             return new FileSystemTreeItem(baseDirectory.Name, FileSystemTreeItemType.Directory, children.ToImmutableArray(), 0);
@@ -96,6 +96,5 @@ namespace FileSystemTree
         }
     }
 }
-
 
 
