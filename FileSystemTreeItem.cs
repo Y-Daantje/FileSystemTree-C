@@ -11,7 +11,6 @@ namespace FileSystemTree
         private readonly FileSystemTreeItemType type;
         private readonly string name;
         private readonly long length;
-
         private readonly string creationTime;
 
         public FileSystemTreeItem(string name, FileSystemTreeItemType type, IEnumerable<FileSystemTreeItem> children, long length)
@@ -20,33 +19,27 @@ namespace FileSystemTree
             this.name = name;
             this.type = type;
             this.length = length;
-            this.creationTime = DateTime.Now.ToString();
+            creationTime = DateTime.Now.ToString("yyyy-MM-dd");
         }
 
         public FileSystemTreeItem(string name, FileSystemTreeItemType type, long length)
             : this(name, type, Array.Empty<FileSystemTreeItem>(), length)
-        {
-        }
+        { }
 
         // public properties to access the private fields
         // Children property returns the child items
         // Type property returns whether it's a file or directory
         // Name property returns the name of the item
-        public IEnumerable<FileSystemTreeItem> Children { get { return this.children; } }
-        public FileSystemTreeItemType Type { get { return this.type; } }
-        public string Name { get { return this.name; } }
-        public long Length { get { return this.length; } }
-        public string CreationTime { get { return this.creationTime; } }
-
-    
-
-
+        public IEnumerable<FileSystemTreeItem> Children { get { return children; } }
+        public FileSystemTreeItemType Type { get { return type; } }
+        public string Name { get { return name; } }
+        public long Length { get { return length; } }
+        public string CreationTime { get { return creationTime; } }
 
     }
 
     public enum FileSystemTreeItemType
     {
-
         Directory,
         File
     }

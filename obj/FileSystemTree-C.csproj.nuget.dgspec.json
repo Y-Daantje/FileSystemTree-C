@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/Users/yannickdaantje/Documents/GitHub/FileSystemTree-C/FileSystemTree-C.csproj": {}
+    "C:\\Users\\yannick\\Documents\\GitHub\\FileSystemTree-C\\FileSystemTree-C.csproj": {}
   },
   "projects": {
-    "/Users/yannickdaantje/Documents/GitHub/FileSystemTree-C/FileSystemTree-C.csproj": {
+    "C:\\Users\\yannick\\Documents\\GitHub\\FileSystemTree-C\\FileSystemTree-C.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/yannickdaantje/Documents/GitHub/FileSystemTree-C/FileSystemTree-C.csproj",
+        "projectUniqueName": "C:\\Users\\yannick\\Documents\\GitHub\\FileSystemTree-C\\FileSystemTree-C.csproj",
         "projectName": "FileSystemTree-C",
-        "projectPath": "/Users/yannickdaantje/Documents/GitHub/FileSystemTree-C/FileSystemTree-C.csproj",
-        "packagesPath": "/Users/yannickdaantje/.nuget/packages/",
-        "outputPath": "/Users/yannickdaantje/Documents/GitHub/FileSystemTree-C/obj/",
+        "projectPath": "C:\\Users\\yannick\\Documents\\GitHub\\FileSystemTree-C\\FileSystemTree-C.csproj",
+        "packagesPath": "C:\\Users\\yannick\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\yannick\\Documents\\GitHub\\FileSystemTree-C\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/yannickdaantje/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\yannick\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
@@ -59,7 +59,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.303/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.309/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

@@ -60,6 +60,11 @@ namespace FileSystemTree
                 //Skip directories that cause IO issues
                 return new FileSystemTreeItem(baseDirectory.Name, FileSystemTreeItemType.Directory, ImmutableArray<FileSystemTreeItem>.Empty, 0);
             }
+            catch (Exception)
+            {
+                //Skip directories that cause IO issues
+                return new FileSystemTreeItem(baseDirectory.Name, FileSystemTreeItemType.Directory, ImmutableArray<FileSystemTreeItem>.Empty, 0);
+            }
 
 
             List<FileSystemTreeItem> children = new List<FileSystemTreeItem>();
@@ -74,7 +79,7 @@ namespace FileSystemTree
             //Lastly add all files of the current tree item
             foreach (FileInfo file in files)
             {
-                children.Add(new FileSystemTreeItem(file.Name, FileSystemTreeItemType.File, (long)file.Length));
+                children.Add(new FileSystemTreeItem(file.Name, FileSystemTreeItemType.File, file.Length));
             }
 
             return new FileSystemTreeItem(baseDirectory.Name, FileSystemTreeItemType.Directory, children.ToImmutableArray(), 0);
@@ -88,7 +93,7 @@ namespace FileSystemTree
                 // clear the console for better readability every time the user is prompted for input
                 Console.Clear(); //Clear the console window
                 Console.Write("Please enter a valid directory path: ");
-                path = Console.ReadLine();
+                path = Console.ReadLine() ?? string.Empty;
 
                 //when the user input is not a valid path doesn't exist, continue to prompt for a valid directory path
             } while (!Directory.Exists(path));
