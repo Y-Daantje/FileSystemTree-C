@@ -11,29 +11,48 @@ namespace FileSystemTree
 
             FileSystemTreeItem fileSystemTree = GetFileSystemTree(baseDirectory);
 
-            OutputFileSystemTreeLevel(0, fileSystemTree);
+            OutputFileSystemTree(fileSystemTree);
         }
 
-        static void OutputFileSystemTreeLevel(int indentationLevel, FileSystemTreeItem item)
+        //item (the current file or folder)
+        //indentation (the current level of indentation)
+        //isLast (whether the current item is the last child of its parent)
+        //isRoot (whether the current item is the root of the tree) the beginning of the tree
+        static void OutputFileSystemTree(FileSystemTreeItem item, string indentation = "", bool isLast = true, bool isRoot = true)
         {
-            // set indentation based on level in tree 2 spaces per level
-            // start with no indentation at level 0 and increase by 2 spaces for each level deeper in the tree
-            string indentation = new string(Enumerable.Repeat(' ', indentationLevel * 2).ToArray());
-
-            // loop through each child item and output its tree level with increased indentation
-            if (item.Children != null && item.Children.Count() > 0)
+            List<FileSystemTreeItem> children = item.Children?.ToList() ?? new List<FileSystemTreeItem>();
+            // Output the current item with appropriate indentation and connector
+            string connector;
+            if (isRoot)
             {
-                foreach (FileSystemTreeItem child in item.Children)
-                {
-                    // recursively output each child item with increased indentation level by 1
-                    OutputFileSystemTreeLevel(indentationLevel + 1, child);
-                }
+                // for the root item, no connector is needed
+                connector = "";
             }
-
-            //combine the indentation with the current tree items name and type
-            Console.WriteLine($"{indentation}{item.Name} ({item.Type}) ({item.Length} bytes)  ({item.CreationTime})");
-
+            else
+            {
+                // for the middle or last children use different connectors
+                connector = isLast ? "└── " : "├── ";
+            }
+            // Recursively output each child item
+            for (int i = 0; i < children.Count; i++)
+            {
+                // Determine if the child is the last in the list
+                bool childIsLast = i == children.Count - 1;
+                // Update indentation for child items
+                string childIndentation;
+                if (isRoot)
+                {
+                    childIndentation = "";
+                }
+                else
+                {
+                    childIndentation = indentation + (isLast ? "    " : "│   ");
+                }
+                OutputFileSystemTree(children[i], childIndentation, childIsLast, false);
+            }
+            Console.WriteLine(indentation + connector + $"{item.Name,-15} " + $"{item.Type,-5} " + $"({item.Length,5} (bytes)) " + $"{item.CreationTime,-12}");
         }
+
         static FileSystemTreeItem GetFileSystemTree(DirectoryInfo baseDirectory)
         {
             // Read all subdirectories and files from the current baseDirectory
