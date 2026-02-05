@@ -50,7 +50,7 @@ namespace FileSystemTree
                 }
                 OutputFileSystemTree(children[i], childIndentation, childIsLast, false);
             }
-            Console.WriteLine(indentation + connector + $"{item.Name,-15} " + $"{item.Type,-5} " + $"({item.Length,5} (bytes)) " + $"{item.CreationTime,-12}");
+            Console.WriteLine(indentation + connector + $"{item.Name,15} " + $"{item.Type,7} " + $"({item.Length,5} bytes) " + $"{item.CreationTime,12}");
         }
 
         static FileSystemTreeItem GetFileSystemTree(DirectoryInfo baseDirectory)
