@@ -50,7 +50,7 @@ namespace FileSystemTree
                 }
                 OutputFileSystemTree(children[i], childIndentation, childIsLast, false);
             }
-            Console.WriteLine(indentation + connector + $"{item.Name,15} " + $"{item.Type,7} " + $"({item.Length,5} bytes) " + $"{item.CreationTime,12}");
+            Console.WriteLine(indentation + connector + $"{item.Name,15} " + $"{item.Type,7} " + $"({item.Length,5} bytes) " + $"{item.CreationTime:yyyy-MM-dd}");
         }
 
         static FileSystemTreeItem GetFileSystemTree(DirectoryInfo baseDirectory)
@@ -72,17 +72,17 @@ namespace FileSystemTree
                 //Skip directories i don't have permission to read
                 //try to read directory but if not possible return empty directory and skip it in the tree
                 // ImmutableArray makes sure that the array cannot be modified after creation
-                return new FileSystemTreeItem(baseDirectory.Name, FileSystemTreeItemType.Directory, ImmutableArray<FileSystemTreeItem>.Empty, 0);
+                return new FileSystemTreeItem(baseDirectory.Name, FileSystemTreeItemType.Directory, ImmutableArray<FileSystemTreeItem>.Empty, 0, baseDirectory.CreationTime);
             }
             catch (IOException)
             {
                 //Skip directories that cause IO issues
-                return new FileSystemTreeItem(baseDirectory.Name, FileSystemTreeItemType.Directory, ImmutableArray<FileSystemTreeItem>.Empty, 0);
+                return new FileSystemTreeItem(baseDirectory.Name, FileSystemTreeItemType.Directory, ImmutableArray<FileSystemTreeItem>.Empty, 0, baseDirectory.CreationTime);
             }
             catch (Exception)
             {
                 //Skip directories that cause IO issues
-                return new FileSystemTreeItem(baseDirectory.Name, FileSystemTreeItemType.Directory, ImmutableArray<FileSystemTreeItem>.Empty, 0);
+                return new FileSystemTreeItem(baseDirectory.Name, FileSystemTreeItemType.Directory, ImmutableArray<FileSystemTreeItem>.Empty, 0, baseDirectory.CreationTime);
             }
 
 
@@ -98,10 +98,10 @@ namespace FileSystemTree
             //Lastly add all files of the current tree item
             foreach (FileInfo file in files)
             {
-                children.Add(new FileSystemTreeItem(file.Name, FileSystemTreeItemType.File, file.Length));
+                children.Add(new FileSystemTreeItem(file.Name, FileSystemTreeItemType.File, file.Length, file.CreationTime));
             }
 
-            return new FileSystemTreeItem(baseDirectory.Name, FileSystemTreeItemType.Directory, children.ToImmutableArray(), 0);
+            return new FileSystemTreeItem(baseDirectory.Name, FileSystemTreeItemType.Directory, children.ToImmutableArray(), 0, baseDirectory.CreationTime);
         }
 
         static string GetBaseDirectoryPath()

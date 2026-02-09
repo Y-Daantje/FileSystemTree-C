@@ -11,19 +11,19 @@ namespace FileSystemTree
         private readonly FileSystemTreeItemType type;
         private readonly string name;
         private readonly long length;
-        private readonly string creationTime;
+        private readonly DateTime creationTime;
 
-        public FileSystemTreeItem(string name, FileSystemTreeItemType type, IEnumerable<FileSystemTreeItem> children, long length)
+        public FileSystemTreeItem(string name, FileSystemTreeItemType type, IEnumerable<FileSystemTreeItem> children, long length, DateTime creationTime)
         {
             this.children = children;
             this.name = name;
             this.type = type;
             this.length = length;
-            creationTime = DateTime.Now.ToString("yyyy-MM-dd");
+            this.creationTime = creationTime;
         }
 
-        public FileSystemTreeItem(string name, FileSystemTreeItemType type, long length)
-            : this(name, type, Array.Empty<FileSystemTreeItem>(), length)
+        public FileSystemTreeItem(string name, FileSystemTreeItemType type, long length, DateTime creationTime)
+            : this(name, type, Array.Empty<FileSystemTreeItem>(), length, creationTime)
         { }
 
         // public properties to access the private fields
@@ -34,7 +34,7 @@ namespace FileSystemTree
         public FileSystemTreeItemType Type { get { return type; } }
         public string Name { get { return name; } }
         public long Length { get { return length; } }
-        public string CreationTime { get { return creationTime; } }
+        public DateTime CreationTime { get { return creationTime; } }
 
     }
 
